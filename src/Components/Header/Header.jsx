@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+
+import { NavLink, useLocation } from "react-router-dom";
 const Header = () => {
-  const [isClicked, setIsClicked] = useState("");
   const navLinks = ["Perfumes", "About", "Contact", "Home", "Cart"];
+  const location = useLocation();
+ const currentPath = location.pathname === "/"?"Home":location.pathname.slice(1);
+ console.log(currentPath)
   return (
     <div>
       <div className="navbar bg-base-100 shadow-[0_10px_25px_rgba(0,0,0,0.3)] z-50 relative px-80 py-5">
@@ -17,11 +19,8 @@ const Header = () => {
               <li key={idx}>
                 <NavLink
                   to={`/${link === "Home" ? "" : link}`}
-                  onClick={() => setIsClicked(link)}
                   className={
-                    isClicked === link
-                      ? "text-2xl myFont underline"
-                      : "text-2xl myFont"
+                    currentPath === link?"text-2xl myFont underline":"text-2xl myFont"
                   }
                 >
                   {link}

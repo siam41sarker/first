@@ -1,7 +1,125 @@
 @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.manRope{
+   font-family: "Manrope";
+}
 .myFont{
     font-family: "Tenor Sans";
 }
+.bannerFont{
+    font-family: "Instrument Serif",
+}
+@keyframes zoomBg {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .bg-zoom {
+    animation: zoomBg 4s ease-in-out infinite alternate;
+    will-change: transform; /* Helps isolate animation to background */
+  }
+  
+/* Custom navigation arrow styles */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: auto !important; /* override default vertical center */
+  bottom: 30px; /* position at bottom */
+  z-index: 10;
+}
+
+.swiper-button-prev {
+  left: 30px;
+}
+
+.swiper-button-next {
+  right: 30px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px; /* optional: smaller arrow icon */
+}
+.swiper-pagination {
+    bottom: 10px !important;
+    text-align: center !important;
+  }
+  
+  .swiper-pagination-bullet {
+    
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    margin: 0 5px;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    
+  }
+    
+  /* Override Swiper default arrow color */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: white !important; /* Force white arrows */
+  font-size: 20px; /* Optional: resize the arrows */
+}
+/* Make Swiper arrows smaller */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: white !important;
+  font-size: 20px !important; /* smaller arrow */
+}
+
+/* Optionally reduce the size of the arrow container too */
+.swiper-button-prev,
+.swiper-button-next {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  padding: 4px 40px;
+  bottom: 20px;
+}
+/* Center pagination bullets */
+.swiper-pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+  }
+  
+  /* Style the bullets */
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 9999px;
+    margin: 0 6px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Active bullet */
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: white;
+  }
+  
