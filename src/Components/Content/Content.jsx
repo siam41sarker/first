@@ -1,5 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import content_img1 from "../../assets/content.jpg";
 const Content = () => {
+  const navigateToContact = useNavigate();
+  const handleNavToContact = () => {
+      navigateToContact("/About");
+  };
+    const navigateToPerfumes = useNavigate();
+  const handleNavToPerfumes = () => {
+      navigateToPerfumes("/Perfumes");
+  };
   return (
     <div>
       <div className="mt-2 bg-[#F5F5F5]">
@@ -22,11 +31,11 @@ const Content = () => {
               prices.
             </p>
             <div className="flex gap-3 mt-5">
-              <button className="btn btn-neutral text-white py-6 px-10 text-lg font-medium Montserrat transition-all duration-300 ease-in-out hover:bg-gray-700 hover:scale-105">
+              <button onClick={handleNavToContact} className="btn btn-neutral text-white py-6 px-10 text-lg font-medium Montserrat transition-all duration-300 ease-in-out hover:bg-gray-700 hover:scale-105">
                 Get Started
               </button>
 
-              <button className="btn bg-red-800 text-white py-6 px-10 text-lg font-medium Montserrat transition-all duration-300 ease-in-out hover:bg-red-900 hover:scale-105">
+              <button onClick={handleNavToPerfumes} className="btn bg-red-800 text-white py-6 px-10 text-lg font-medium Montserrat transition-all duration-300 ease-in-out hover:bg-red-900 hover:scale-105">
                 Our Product
               </button>
             </div>

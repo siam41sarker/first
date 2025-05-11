@@ -1,10 +1,17 @@
 
 import { NavLink, useLocation } from "react-router-dom";
 const Header = () => {
-  const navLinks = ["Perfumes", "About", "Contact", "Home", "Cart"];
+  const navLinks = ["Perfumes", "About us", "Home","Contact us", "Cart"];
+  const routeMap = {
+  "Home": "",
+  "Perfumes": "perfumes",
+  "About us": "about_us",
+  "Contact us": "contact_us",
+  "Cart": "cart"
+};
   const location = useLocation();
- const currentPath = location.pathname === "/"?"Home":location.pathname.slice(1);
- console.log(currentPath)
+ const currentPath = location.pathname === "/"?routeMap["Home"]:location.pathname.slice(1);
+ //console.log(currentPath)
   return (
     <div>
       <div className="navbar bg-base-100 shadow-[0_10px_25px_rgba(0,0,0,0.3)] z-50 relative px-80 py-5">
@@ -18,9 +25,9 @@ const Header = () => {
             {navLinks.map((link, idx) => (
               <li key={idx}>
                 <NavLink
-                  to={`/${link === "Home" ? "" : link}`}
+                  to={`/${routeMap[link]}`}
                   className={
-                    currentPath === link?"text-2xl myFont underline":"text-2xl myFont"
+                    currentPath === routeMap[link]?"text-2xl myFont underline":"text-2xl myFont"
                   }
                 >
                   {link}

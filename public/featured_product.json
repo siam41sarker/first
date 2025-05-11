@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "category": "Louis Vuitton",
+    "title": "Louis Vuitton Imagination",
+    "short_description": "An ode to creativity and the boundless potential of the mind, Imagination is a citrusy and spicy fragrance with Calabrian bergamot, Chinese black tea, and Nigerian ginger. It evokes the limitless spark of ideas igniting in one’s soul, with a base of ambrox and olibanum bringing depth and modern sensuality.",
+    "price": {
+      "1ml": "$5.99",
+      "5ml": "$15.99",
+      "10ml": "$27.99",
+      "20ml": "$49.99",
+      "50ml_sale": "$80",
+      "100ml_sale": "$140.00"
+    },
+    "image": "https://talhax.wp-zone.com/wp-content/uploads/2025/05/Screenshot2025-04-03at18.27.57-1.png"
+  },
+  {
+    "id": 2,
+    "category": "Louis Vuitton",
+    "title": "Louis Vuitton Ombre Nomade",
+    "short_description": "PLEASE NOTE:\n1ml Samples are provided in half filled 2ml plastic Vials.\n\nThe primary picture is for illustration only...",
+    "Description": "MAIN NOTES\nOud wood, Benzoin tears, Incense, Raspberry",
+    "price": {
+      "1ml": "$5.99",
+      "5ml": "$14.99",
+      "10ml": "$29.99",
+      "30ml": "$49.99",
+      "50ml_regular": "$24.99",
+      "50ml_sale": "$79.99",
+      "100ml_regular": "$199.99",
+      "100ml_sale": "$119.99"
+    },
+    "image": "https://talhax.wp-zone.com/wp-content/uploads/2025/05/Screenshot-2025-04-11-at-04.03.21-3.png"
+  },
+  {
+    "id": 3,
+    "category": "Maison Crivelli",
+    "title": "Maison Crivelli Hibiscus Mahajád",
+    "short_description": "Allow yourself to give in to the flamboyant facets of Hibiscus Mahajád!...",
+    "Description": "Notes: Rose Damascena absolute, vanilla absolute, leather, spearmint essential oil...",
+    "price": {
+      "1ml": "$5.99",
+      "5ml": "$24.99",
+      "10ml": "$39.99",
+      "30ml": "$74.99",
+      "50ml_regular": "$199.99",
+      "50ml_sale": "$99.99",
+      "100ml_regular": "$299.99",
+      "100ml_sale": "$149.99"
+    },
+    "image": "https://talhax.wp-zone.com/wp-content/uploads/2025/05/Screenshot-2025-04-13-at-22.39.06-1-1.png"
+  },
+  {
+    "id": 4,
+    "category": "Maison Crivelli",
+    "title": "Maison Crivelli Oud Maracuja",
+    "short_description": "Some smells take you straight back to a favourite memory...",
+    "Description": "Description: Top Notes: Passionfruit, Ebelia, Saffron...",
+    "price": {
+      "1ml": "$5.99",
+      "5ml": "$24.99",
+      "10ml": "$39.99",
+      "30ml": "$74.99",
+      "50ml_regular": "$129.99",
+      "50ml_sale": "$99.99",
+      "100ml_regular": "$249.99",
+      "100ml_sale": "$149.99"
+    },
+    "image": "https://talhax.wp-zone.com/wp-content/uploads/2025/05/Screenshot-2025-04-13-at-22.16.44.png"
+  }
+]

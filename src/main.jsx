@@ -9,6 +9,7 @@ import Contact from './Components/Contact/Contact.jsx'
 import Perfumes from './Components/Perfumes/Perfumes.jsx'
 import Cart from './Components/Cart/Cart.jsx'
 import Banner from './Components/Banner/Banner.jsx'
+import Product_Details from './Components/Product_Details/Product_Details.jsx'
 const siam = createBrowserRouter([
     {
         path:'/',
@@ -20,15 +21,19 @@ const siam = createBrowserRouter([
                 element:<Banner></Banner>
             },
             {
-                path:'/Perfumes',
+                path:'/product/:url',
+                element:<Product_Details></Product_Details>,
+            },
+            {
+                path:'/perfumes',
                 element:<Perfumes></Perfumes>
             },
             {
-                path:'/About',
+                path:'/about_us',
                 element:<About></About>
             },
             {
-                path:'/Contact',
+                path:'/contact_us',
                 element:<Contact></Contact>
             },
             {
