@@ -6,7 +6,7 @@ const Featured = ({ prod }) => {
   const navigateToCart = useNavigate();
   const formatted_title =  title.toLowerCase().replace(/\s+/g,"-");
   const handleNavigateToCart = () => {
-    navigateToCart(`/product/${formatted_title}`);
+    navigateToCart(`/${formatted_title}`);
   };
   return (
     <div onClick={handleNavigateToCart} className="cursor-pointer">

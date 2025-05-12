@@ -13,7 +13,7 @@ import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 const Banner = () => {
   const navigation = useNavigate();
   const handleClickButton = () => {
-    navigation("/Perfumes");
+    navigation("/perfumes");
   };
   return (
     <div>

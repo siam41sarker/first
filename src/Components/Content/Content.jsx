@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import content_img1 from "../../assets/content.jpg";
+import Stats from "../Stats/Stats";
+
 const Content = () => {
   const navigateToContact = useNavigate();
   const handleNavToContact = () => {
-      navigateToContact("/About");
+      navigateToContact("/about_us");
   };
     const navigateToPerfumes = useNavigate();
   const handleNavToPerfumes = () => {
-      navigateToPerfumes("/Perfumes");
+      navigateToPerfumes("/perfumes");
   };
   return (
     <div>
@@ -54,6 +56,7 @@ const Content = () => {
             appreciate the art of scent.
           </p>
         </div>
+      <Stats></Stats>
       </div>
       <div className="bg-[#ebe5dc] flex flex-col items-center">
         <div className="w-[630px] p-16 flex flex-col items-center">

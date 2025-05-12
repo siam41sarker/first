@@ -21,8 +21,18 @@ const siam = createBrowserRouter([
                 element:<Banner></Banner>
             },
             {
-                path:'/product/:url',
+                path:'/:url',
                 element:<Product_Details></Product_Details>,
+                loader:async ()=>
+                    {
+                        try {
+                        const res = await fetch("featured_product.json")
+                        const data = await res.json()
+                        return data
+                    } catch (e) {
+                        return console.log(e)
+                    }
+                    }
             },
             {
                 path:'/perfumes',
