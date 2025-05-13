@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { createContext, StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -10,6 +10,7 @@ import Perfumes from './Components/Perfumes/Perfumes.jsx'
 import Cart from './Components/Cart/Cart.jsx'
 import Banner from './Components/Banner/Banner.jsx'
 import Product_Details from './Components/Product_Details/Product_Details.jsx'
+export const cartContext = createContext();
 const siam = createBrowserRouter([
     {
         path:'/',
@@ -47,14 +48,24 @@ const siam = createBrowserRouter([
                 element:<Contact></Contact>
             },
             {
-                path:'/Cart',
+                path:'/cart',
                 element:<Cart></Cart>
             }
         ]
     }
 ])
+// eslint-disable-next-line react-refresh/only-export-components
+const Main = () =>
+    {
+        const [quantity,setQuantity] = useState(0);
+        return (
+           <cartContext.Provider value={{quantity,setQuantity}}>
+                        <RouterProvider router={siam}></RouterProvider>
+           </cartContext.Provider>
+        )
+    }
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-        <RouterProvider router={siam}></RouterProvider>
+       <Main/>
   </StrictMode>,
 )

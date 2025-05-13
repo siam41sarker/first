@@ -5,6 +5,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .animate-slide-in {
+    animation: slide-in-right 0.8s forwards;
+  }
+
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
 .manRope{
    font-family: "Manrope";
 }
@@ -132,3 +146,4 @@
   .lineHight{
     line-height: 56px !important;
   }
+

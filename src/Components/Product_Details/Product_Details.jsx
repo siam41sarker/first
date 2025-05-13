@@ -1,26 +1,33 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import banner_pic from "../../assets/omre.jpg";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { cartContext } from "../../main";
 const Product_Details = () => {
+
   const { url } = useParams();
   const loadedData = useLoaderData();
-
+  const { quantity, setQuantity } = useContext(cartContext);
+  const [valueFromCart, setValueFromCart] = useState(1);
   const filtered_data = loadedData.find(
     (item) => item.title.toLowerCase().replace(/\s+/g, "-") === url
   );
   const [price, setSPrice] = useState(
     parseFloat(filtered_data.price?.["1ml"].slice(1))
   );
-
   const [salePrice, setSalePrice] = useState("");
   console.log(salePrice);
-  const [quality,setQuality] = useState(1);
   const [isSelected, setIsSelected] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [regularPrice, setRegularPrice] = useState("");
   const interest = 4;
   const handleChangeOption = (event) => {
-    setSPrice(parseFloat(event.target.value));
-    setIsSelected(true);
+    if (event.target.value === "") {
+      setIsSelected(false);
+      setSPrice(parseFloat(filtered_data.price?.["1ml"].slice(1)));
+    } else {
+      setIsSelected(true);
+      setSPrice(parseFloat(event.target.value));
+    }
     const optionSelected = event.target.options[event.target.selectedIndex];
     const sale = optionSelected.getAttribute("data-sale");
     const regular = optionSelected.getAttribute("data-regular");
@@ -29,17 +36,23 @@ const Product_Details = () => {
     console.log("regular: ", regular);
     console.log("sale: ", sale);
   };
+  console.log("value: ", quantity);
   return (
     <div>
       <div
+        className="flex justify-center items-center"
         style={{
-          backgroundImage: `url(${banner_pic})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${banner_pic})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           height: "300px",
         }}
-      ></div>
+      >
+        <h1 className="text-[50px] text-white bannerFont">
+          {filtered_data.title}
+        </h1>
+      </div>
       <div className="mt-2 bg-[#F5F5F5] flex gap-10 justify-center pt-12 pb-12">
         <div>
           <img src={filtered_data.image} alt="" />
@@ -155,8 +168,40 @@ const Product_Details = () => {
                 </svg>
               </div>
             </div>
-            <div>
-            
+            <div className="mt-5 flex gap-6">
+              <input
+                className="py-1 px-3 rounded-lg border border-solid border-black"
+                type="number"
+                aria-label="Quantity"
+                min={1}
+                max={999}
+                size={4}
+                value={valueFromCart}
+                step={1}
+                onChange={(e) => {
+                  let val = e.target.value;
+                  if (val < 1) val = 1;
+                  if (val > 999) val = 999;
+                  setValueFromCart(parseInt(val));
+                }}
+              />
+              <button
+                onClick={() => {
+                  if (!isSelected) {
+                    alert("Please select an option!");
+                  } else {
+                    setIsButtonClicked(true);
+                    setQuantity(parseInt(quantity + valueFromCart));
+                  }
+                }}
+                className={
+                  !isSelected
+                    ? "btn bg-[#7249a4] text-white bannerFont border border-solid border-[#7249a4] rounded-lg  opacity-[0.3] cursor-not-allowed"
+                    : "btn bg-[#7249a4] text-white bannerFont border border-solid border-[#7249a4] rounded-lg"
+                }
+              >
+                {!isButtonClicked ? "Add To Cart" : "Added"}
+              </button>
             </div>
           </div>
         </div>
@@ -197,6 +242,7 @@ const Product_Details = () => {
         doloribus, magni, doloremque alias exercitationem perspiciatis quae
         beatae omnis fuga debitis possimus eveniet.
       </p>
+
     </div>
   );
 };
