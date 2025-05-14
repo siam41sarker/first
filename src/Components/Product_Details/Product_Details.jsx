@@ -3,11 +3,11 @@ import banner_pic from "../../assets/omre.jpg";
 import { useContext, useState } from "react";
 import { cartContext } from "../../main";
 const Product_Details = () => {
-
   const { url } = useParams();
   const loadedData = useLoaderData();
-  const { quantity, setQuantity } = useContext(cartContext);
+  const { quantity, setQuantity,cartItems,setCartItems} = useContext(cartContext);
   const [valueFromCart, setValueFromCart] = useState(1);
+  const [selectedSizeLabel,setSelectedSizeLabel] = useState('');
   const filtered_data = loadedData.find(
     (item) => item.title.toLowerCase().replace(/\s+/g, "-") === url
   );
@@ -29,6 +29,7 @@ const Product_Details = () => {
       setSPrice(parseFloat(event.target.value));
     }
     const optionSelected = event.target.options[event.target.selectedIndex];
+    setSelectedSizeLabel(optionSelected.text);
     const sale = optionSelected.getAttribute("data-sale");
     const regular = optionSelected.getAttribute("data-regular");
     setSalePrice(sale ? sale : "");
@@ -192,6 +193,16 @@ const Product_Details = () => {
                   } else {
                     setIsButtonClicked(true);
                     setQuantity(parseInt(quantity + valueFromCart));
+                    setCartItems([
+                      ...cartItems,{
+                          id:filtered_data.id,
+                          image:filtered_data.image,
+                          title:filtered_data.title,
+                          size:selectedSizeLabel,
+                          cartQuantity:parseFloat(valueFromCart),
+                          priceOfIt: parseFloat(price)
+                      }
+                    ])
                   }
                 }}
                 className={
@@ -209,38 +220,7 @@ const Product_Details = () => {
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
         reprehenderit tempora totam numquam dolores nulla, eum, molestiae
-        repellendus veritatis vero ad, perspiciatis temporibus doloremque
-        deserunt sed ducimus incidunt. Labore laudantium dignissimos impedit
-        accusantium illo porro inventore sed nemo maxime vel eveniet, ex
-        repellat ullam saepe numquam minima quam ad autem qui nihil temporibus
-        cumque sequi officiis. Amet ab quis consequuntur excepturi ipsum numquam
-        recusandae error ut quia repellat odit praesentium quibusdam nobis eius
-        sint aspernatur, dolorum dolores sed eaque voluptas facere adipisci
-        deleniti voluptatibus ratione. Distinctio eaque quibusdam quos
-        recusandae illum dolore! Pariatur, non ullam culpa neque expedita
-        temporibus excepturi quae deleniti? Excepturi perferendis odio illo
-        pariatur rem eum, minus voluptate, aut natus dolorum possimus enim
-        reiciendis soluta provident neque cupiditate accusantium mollitia
-        facilis fuga dolores dolorem explicabo. Facilis eligendi cumque aperiam,
-        sequi nam expedita excepturi aliquid magni tenetur culpa. Explicabo
-        praesentium delectus ratione porro quibusdam? Id modi corporis
-        voluptates commodi, autem consectetur accusamus aut tenetur, est vel
-        aliquid maxime possimus magni perspiciatis sequi deleniti corrupti a
-        incidunt expedita exercitationem nobis ratione totam ipsum consequuntur?
-        Corporis est eligendi sunt cumque ducimus? Quis delectus ipsa
-        perferendis debitis aut laboriosam expedita dolorum quasi sapiente
-        blanditiis? Natus debitis ipsum ad, vel id nihil ducimus unde labore
-        nemo mollitia, modi explicabo iste cum beatae quasi sapiente eius
-        corrupti vitae dicta tempore aliquid aperiam autem hic exercitationem!
-        Fugit libero aut, veniam veritatis eius sunt eaque, provident inventore
-        distinctio optio ullam, doloribus reiciendis tempore possimus tempora.
-        Iure non numquam praesentium, consectetur aperiam aut aliquam saepe,
-        iste dolore earum iusto quasi nesciunt laudantium natus, odio ipsam!
-        Deserunt accusamus quidem nostrum facilis praesentium dolor error,
-        totam, eaque quos nemo eum rerum magnam voluptate ducimus mollitia dicta
-        sint perferendis exercitationem tenetur rem? Itaque aut incidunt labore
-        doloribus, magni, doloremque alias exercitationem perspiciatis quae
-        beatae omnis fuga debitis possimus eveniet.
+       
       </p>
 
     </div>

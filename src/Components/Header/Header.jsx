@@ -1,9 +1,19 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate,  } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { cartContext } from "../../main";
 
 const Header = () => {
+  const navigateToCartDetails = useNavigate();
+  const handleNavigateToCartDetails = ()=>
+      {
+          navigateToCartDetails("/cart-details");
+      }
+  const navigateToCheckout = useNavigate();
+  const handleNavigateToCheckout = ()=>
+      {
+          navigateToCheckout("/checkout");
+      }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navLinks = ["Perfumes", "About us", "Home", "Contact us", "Cart"];
   const routeMap = {
@@ -13,13 +23,14 @@ const Header = () => {
     "Contact us": "contact_us",
     Cart: "cart",
   };
-  const { quantity } = useContext(cartContext);
+  const { quantity,cartItems } = useContext(cartContext);
+  console.log("cart items: ",cartItems.length)
   const location = useLocation();
   const currentPath =
     location.pathname === "/" ? routeMap["Home"] : location.pathname.slice(1);
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-[0_10px_25px_rgba(0,0,0,0.3)] z-50 relative px-80 py-5 flex justify-between items-center">
+      <div className="navbar bg-base-100  z-50 relative w-full  px-80 py-5 flex justify-center gap-[250px] items-center">
         <div className="">
           <NavLink
             to="/"
@@ -61,7 +72,7 @@ const Header = () => {
       </div>
       {isModalOpen && (
         <div className="fixed top-0 right-0 w-full h-full bg-black bg-opacity-50 z-50 flex justify-end">
-          <div className="bg-white w-[300px] h-full p-6 shadow-lg transform transition-transform duration-[800ms] ease-in-out translate-x-0 animate-slide-in relative">
+          <div className="bg-white w-[300px] h-full p-6 shadow-lg transform transition-transform duration-[800ms] ease-in-out translate-x-0 animate-slide-in relative overflow-y-auto">
             
             <button
               onClick={() => setIsModalOpen(false)}
@@ -71,10 +82,30 @@ const Header = () => {
               &times;
             </button>
 
-            <h3 className="font-bold text-lg mt-8">Hello!</h3>
-            <p className="py-4">
-              Press ESC key or click the cross icon to close
-            </p>
+            <div className="w-11/12">
+                  {
+                      cartItems.map(item=><div key={item.id} className="pt-14">
+                          <img src={item.image} alt="" className="w-full" />
+                          <h1 className="text-[#A7231A] myFont font-bold text-[14px]">{item.title} {"    "} <span>{item.size}</span></h1>
+                          <p className="mt-2 text-black">{item.cartQuantity} ×  ${item.priceOfIt}</p>
+                          <p className="mt-4 text-[#959595]"><span className="font-extrabold">Subtotal: </span>${parseFloat(item.cartQuantity*item.priceOfIt).toFixed(2)}</p>
+                          <div className="mt-4 flex justify-between">
+                            <button onClick={()=>
+                                {
+                                    handleNavigateToCartDetails();
+                                    setIsModalOpen(false);
+                                }
+                            } className="btn bg-[#e9e6ed] text-[#515151] rounded-[3px] hover:bg-[#5d5c5e] hover:font-bold hover:text-white">View Cart</button>
+                            <button onClick={()=>
+                                {
+                                    handleNavigateToCheckout();
+                                    setIsModalOpen(false);
+                                }
+                            } className="btn bg-[#e9e6ed] text-[#515151] rounded-[3px] hover:bg-[#5d5c5e] hover:font-bold hover:text-white">Checkout</button>
+                          </div>
+                      </div>)
+                  }
+            </div>
           </div>
         </div>
       )}
