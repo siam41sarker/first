@@ -5,9 +5,10 @@ import { cartContext } from "../../main";
 const Product_Details = () => {
   const { url } = useParams();
   const loadedData = useLoaderData();
-  const { quantity, setQuantity,cartItems,setCartItems} = useContext(cartContext);
+  const { quantity, setQuantity, cartItems, setCartItems } =
+    useContext(cartContext);
   const [valueFromCart, setValueFromCart] = useState(1);
-  const [selectedSizeLabel,setSelectedSizeLabel] = useState('');
+  const [selectedSizeLabel, setSelectedSizeLabel] = useState("");
   const filtered_data = loadedData.find(
     (item) => item.title.toLowerCase().replace(/\s+/g, "-") === url
   );
@@ -190,28 +191,52 @@ const Product_Details = () => {
                 onClick={() => {
                   if (!isSelected) {
                     alert("Please select an option!");
+                  } else if (isButtonClicked) {
+                    alert("Already Selected!");
                   } else {
+                    const existingProductIndex = cartItems.findIndex(
+                      (item) =>
+                        item.title === filtered_data.title &&
+                        item.image === filtered_data.image &&
+                        item.size === selectedSizeLabel 
+                    );
+
+                    if (existingProductIndex !== -1) {
+                      const updatedCart = [...cartItems];
+                      updatedCart[existingProductIndex].cartQuantity +=
+                        parseInt(valueFromCart);
+                      setCartItems(updatedCart);
+                    } else {
+                      setCartItems([
+                        ...cartItems,
+                        {
+                          id: filtered_data.id,
+                          image: filtered_data.image,
+                          title: filtered_data.title,
+                          size: selectedSizeLabel,
+                          cartQuantity: parseInt(valueFromCart),
+                          priceOfIt: parseFloat(price),
+                        },
+                      ]);
+                    }
+
+                    setQuantity(quantity + parseInt(valueFromCart));
                     setIsButtonClicked(true);
-                    setQuantity(parseInt(quantity + valueFromCart));
-                    setCartItems([
-                      ...cartItems,{
-                          id:filtered_data.id,
-                          image:filtered_data.image,
-                          title:filtered_data.title,
-                          size:selectedSizeLabel,
-                          cartQuantity:parseFloat(valueFromCart),
-                          priceOfIt: parseFloat(price)
-                      }
-                    ])
                   }
                 }}
                 className={
-                  !isSelected
-                    ? "btn bg-[#7249a4] text-white bannerFont border border-solid border-[#7249a4] rounded-lg  opacity-[0.3] cursor-not-allowed"
+                  !isSelected || isButtonClicked
+                    ? "btn bg-[#7249a4] text-white bannerFont border border-solid border-[#7249a4] rounded-lg opacity-[0.3] cursor-not-allowed"
                     : "btn bg-[#7249a4] text-white bannerFont border border-solid border-[#7249a4] rounded-lg"
                 }
               >
-                {!isButtonClicked ? "Add To Cart" : "Added"}
+                {!isButtonClicked ? (
+                  "Add To Cart"
+                ) : (
+                  <span className="opacity-[0.3] cursor-not-allowed">
+                    Added
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -220,9 +245,7 @@ const Product_Details = () => {
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
         reprehenderit tempora totam numquam dolores nulla, eum, molestiae
-       
       </p>
-
     </div>
   );
 };
