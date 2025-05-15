@@ -161,14 +161,14 @@ const CartDetails = () => {
               />
               <button
                 type="submit"
-                className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-500 text-black"
+                className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-500 text-black hover:text-white"
               >
                 Apply coupon
               </button>
             </div>
             <button
               type="submit"
-              className="ml-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-500 text-black"
+              className="ml-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-500 text-black hover:text-white"
             >
               Update cart
             </button>
